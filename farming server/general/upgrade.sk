@@ -1,0 +1,40 @@
+options:
+ MC: NETHER STAR
+ McName: "&r&b&lMultiCoin"
+ McLore: "&r&5Use in /Upgrade"
+ 
+command /upgrade:
+	trigger:
+		set {_gui} to a new chest inventory with 1 row with name "Upgrade!"
+		set slot 4 of {_gui} to nether star named "&c&rUPGRADE &7(+0.5)"
+		set slot 1,2,3,5,6,7,8,0 of {_gui} to red stained glass pane named "&c&rCost&7:%{mcost::%player's uuid%}%"
+		open {_gui} to player
+on inventory click:
+	if name of event-inventory is "Upgrade!":
+		if index of event-slot = 4:
+			cancel event
+			set {__gui} to a new chest inventory with 1 row with name "Upgrade!!"
+			set slot 4 of {__gui} to nether star named "&r&cARE YOUR SURE?"
+			set slot 3 of {__gui} to red stained glass pane named "&c&r&4NO!"
+			set slot 5 of {__gui} to green stained glass pane named "&c&r&2YES!"
+			set slot 1,2,6,7,8,0 of {__gui} to white stained glass pane named "&c&rCost&7:%{mcost::%player's uuid%}%"
+			open {__gui} to player
+		else:
+			cancel event
+			stop
+	if name of event-inventory is "Upgrade!!":
+		if index of event-slot = 5:
+			cancel event
+			if player has {mcost::%player's uuid%} of Nether Star named {@McName} with the lore {@McLore}:
+				remove {mcost::%player's uuid%} of Nether Star named {@McName} with the lore {@McLore} from player
+				add 0.5 to {multi::%player's uuid%}
+				add 1.5*{mcost::%player's uuid%} to {mcost::%player's uuid%}
+				close player's inventory
+				stop
+		if index of event-slot = 3:
+			cancel event
+			close player's inventory
+			stop
+		else:
+			cancel event
+			stop

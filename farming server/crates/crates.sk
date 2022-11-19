@@ -1,0 +1,73 @@
+options:
+
+
+
+# KEYS
+ KeyType: TRIPWIRE HOOK
+ KeyName: "&aCommon &7Key"
+ KeyLore: "&7Right Click on Crate to Use."
+ RType: PAPER
+ RName: "&r&6&lWheat &f&lCompressor"
+ RLore: "&6Compresses Wheat For You Right Click to Redeem"
+
+on right click on chest:
+	if block under event-block is gold block:
+		cancel event
+		if player is holding {@KeyType} named {@KeyName} with lore {@KeyLore}:
+			
+			set {_r} to a random integer from 1 to 100
+		if {_r} is between 1 and 16:
+			set {_item} to Hay Bale named "&r&bBale Of Wheat" with the lore "&r&564 Wheat"
+			set {_num} to 32
+		if {_r} is between 17 and 38:
+			set {_item} to Nether Star named "&r&b&lMultiCoin" with the lore "&r&5Use in /Upgrade"
+			set {_num} to 16
+		if {_r} is between 17 and 38:
+			set {_item} to Paper named {@RName} with the lore {@RLore}
+			set {_num} to 1
+		if {_r} is between 39 and 44:
+			set {_item} to unbreakable Diamond Sword of knockback 3 and sharpness 5 named "&a&lPoisonous &2&lBlade" with the lore "&bWitch 5"
+			set {_num} to 1
+		if {_r} is between 45 and 50:
+			set {_item} to unbreakable Golden Helmet of protection 5 named "&6&lKING'S CROWN" with the lore "&bUnbreakable" and "&b+50 Hearts"
+			set {_num} to 1		
+		if {_r} is between 51 and 60:
+			set {_item} to unbreakable Netherite Boots of protection 5 named "&b&lGod &f&lSpeed" with the lore "&bUnbreakable" and "&b+Speed"
+			set {_num} to 1		
+		if {_r} is between 61 and 75:
+			set {_item} to Stick of knockback 3 named "&c&lKnockback &f&lStick"
+			set {_num} to 1		
+		if {_r} is between 76 and 80:
+			set {_item} to unbreakable golden sword of sharpness 5 named "&6&lZeus's &b&lBolt" with the lore "&4&lThe God's Smile Upon You."
+			set {_num} to 1		
+			give player {_num} of {_item}
+			Send "&r&l&2You Got %{_num}% %{_item}%" to player
+			play sound "BLOCK_CHEST_OPEN" at volume 100 and pitch 1 for player
+			remove 1 of {@KeyType} named {@KeyName} with lore {@KeyLore} from player's inventory
+				
+				
+				
+		else:
+			send "&cYou need a Key in Hand!" to player
+on left click on chest:
+	if block under event-block is gold block:
+		cancel event
+		set {_gui} to a new chest inventory with 3 row with name "&aCommon &7Crate"
+		set slot 0 of {_gui} to 32 Hay Bale of thorns 1 named "&r&bBale Of Wheat" with the lore "&r&564 Wheat"
+		set slot 1 of {_gui} to 16 Nether Star named "&r&b&lMultiCoin" with the lore "&r&5Use in /Upgrade"
+		set slot 2 of {_gui} to 1 Paper named {@RName} with the lore {@RLore}
+		open {_gui} to player
+		set slot 3 of {_gui} to unbreakable Diamond Sword of knockback 3 and sharpness 5 named "&a&lPoisonous &2&lBlade" with the lore "&bWitch 5"
+		set slot 4 of {_gui} to unbreakable Golden Helmet of protection 5 named "&6&lKING'S CROWN" with the lore "&bUnbreakable" and "&b+50 Hearts"
+		set slot 5 of {_gui} to unbreakable Netherite Boots of protection 5 named "&b&lGod &f&lSpeed" with the lore "&bUnbreakable" and "&b+Speed"
+		set slot 6 of {_gui} to Stick of knockback 3 named "&c&lKnockback &f&lStick"
+		set slot 7 of {_gui} to unbreakable golden sword of sharpness 5 named "&6&lZeus's &b&lBolt" with the lore "&4&lThe God's Smile Upon You."
+on inventory click:
+	if name of event-inventory is "&aCommon &7Crate":
+		cancel event
+
+command /key:
+	permission: spade.key
+	permission message: "No Perm's"
+	trigger:
+		give player 1 {@KeyType} named {@KeyName} with lore {@KeyLore}

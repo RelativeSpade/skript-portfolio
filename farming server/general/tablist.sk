@@ -1,0 +1,10 @@
+options:
+ Header: &c&lWelcome to the Server!%nl%&7Online Players:&a%{Online}% %nl%
+ Footer:%nl%&a&lSpadesTestin.minehut.gg
+ 
+every second:
+  loop all players:
+    set loop-player's tab list header to "{@Header}"
+    set loop-player's tab list footer to "{@Footer}"
+    set {Online} to number of all players
+    stop

@@ -1,0 +1,18 @@
+on join:
+	give 1 wheat to player
+on block break:
+    if player's tool is hoe:
+        if event-block is ripe wheat plant:
+            set event-block to freshly planted wheat plant
+            set {_multi} to {multi::%player's uuid%}*{ammount::%player's uuid%}
+            set {_item} to wheat
+            give player {_multi} of {_item}
+            wait 1 seconds
+            set event-block to stage 4 wheat plant
+            wait 1 seconds
+            set event-block to ripe wheat plant
+            add 1 to {cfarm::%player's uuid%}
+    else if event-block is ripe wheat plant:
+        cancel event
+        send "&r&l&cWRONG TOOL!!" to player
+        stop

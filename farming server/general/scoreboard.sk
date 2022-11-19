@@ -1,0 +1,14 @@
+every 1 second:
+	loop all players:
+		set {_online} to number of all players
+		wipe loop-player's sidebar
+		set name of sidebar of loop-player to "&b&lSpade's Farm"
+		set score "&7&m---------------------" in sidebar of loop-player to 7
+		set score "&b&l✩ &c&lMultiplier&7: %{multi::%loop-player's uuid%}%" in sidebar of loop-player to 6
+		set score "&8  " in sidebar of loop-player to 5
+		set score "&b&l✩ &c&lCrops Farmed&7: %{cfarm::%loop-player's uuid%}%" in sidebar of loop-player to 4
+		set score "&8 " in sidebar of loop-player to 3
+		set score "&b&l✩ &c&lMulti Cost&7: %{mcost::%loop-player's uuid%}%" in sidebar of loop-player to 2
+		set score "&7&m--------------------" in sidebar of loop-player to 1
+		
+	

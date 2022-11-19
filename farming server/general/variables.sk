@@ -1,0 +1,235 @@
+on join:
+  if {uuid::%player%} is not set:
+    set {uuid::%player%} to player's uuid
+  if {multi::%player's uuid%} is not set:
+    set {multi::%player's uuid%} to 1
+  if {cfarm::%player's uuid%} is not set:
+    set {cfarm::%player's uuid%} to 0
+  if {mcost::%player's uuid%} is not set:
+    set {mcost::%player's uuid%} to 10
+  if {ammount::%player's uuid%} is not set:
+    set {ammount::%player's uuid%} to 1	
+  {ac::%player's uuid%} = 0
+  if {ammount2::%player's uuid%} is not set:
+    set {ammount2::%player's uuid%} to 0
+  if {ammount3::%player's uuid%} is not set:
+    set {ammount3::%player's uuid%} to 0
+  if {ammount4::%player's uuid%} is not set:
+    set {ammount4::%player's uuid%} to 0
+  if {ammount5::%player's uuid%} is not set:
+    set {ammount5::%player's uuid%} to 0
+options:
+ HoeType1: WOODEN HOE
+ HoeType2: STONE HOE
+ HoeType3: IRON HOE
+ HoeType4: GOLDEN HOE
+ HoeType5: DIAMOND HOE
+ HoeType6: NETHERITE HOE
+ HoeName1: "&r&7T1 Hoe I"
+ HoeName2: "&r&7T1 Hoe II"
+ HoeName3: "&r&7T1 Hoe III"
+ HoeName4: "&r&7T1 Hoe IV"
+ HoeName5: "&r&7T1 Hoe V"
+ HoeName6: "&r&7T1 Hoe VI"
+ HoeName7: "&r&7T1 Hoe VII"
+ HoeName8: "&r&7T1 Hoe VIII"
+ HoeName9: "&r&7T1 Hoe IX"
+ HoeName10: "&r&7T1 Hoe X"
+
+every second:
+ loop all players:	
+  if loop-player is holding {@HoeType1} named {@HoeName1}:
+   set {_ammount} to 1
+   set {ammount::%loop-player's uuid%} to {_ammount}
+  if loop-player is holding {@HoeType1} named {@HoeName2}:
+   set {_ammount} to 2
+   set {ammount::%loop-player's uuid%} to {_ammount}
+  if loop-player is holding {@HoeType1} named {@HoeName3}:
+   set {_ammount} to 3
+   set {ammount::%loop-player's uuid%} to {_ammount}
+  if loop-player is holding {@HoeType1} named {@HoeName4}:
+   set {_ammount} to 4
+   set {ammount::%loop-player's uuid%} to {_ammount}
+  if loop-player is holding {@HoeType1} named {@HoeName5}:
+   set {_ammount} to 5
+   set {ammount::%loop-player's uuid%} to {_ammount}
+  if loop-player is holding {@HoeType1} named {@HoeName6}:
+   set {_ammount} to 6
+   set {ammount::%loop-player's uuid%} to {_ammount}
+  if loop-player is holding {@HoeType1} named {@HoeName7}:
+   set {_ammount} to 7
+   set {ammount::%loop-player's uuid%} to {_ammount}
+  if loop-player is holding {@HoeType1} named {@HoeName8}:
+   set {_ammount} to 8
+   set {ammount::%loop-player's uuid%} to {_ammount}
+  if loop-player is holding {@HoeType1} named {@HoeName9}:
+   set {_ammount} to 9
+   set {ammount::%loop-player's uuid%} to {_ammount}
+  if loop-player is holding {@HoeType1} named {@HoeName10}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 1
+  if loop-player is holding {@HoeType2} named {@HoeName1}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 2
+  if loop-player is holding {@HoeType2} named {@HoeName2}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 3
+  if loop-player is holding {@HoeType2} named {@HoeName3}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 4
+  if loop-player is holding {@HoeType2} named {@HoeName4}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 5
+  if loop-player is holding {@HoeType2} named {@HoeName5}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 6
+  if loop-player is holding {@HoeType2} named {@HoeName6}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 7
+  if loop-player is holding {@HoeType2} named {@HoeName7}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 8
+  if loop-player is holding {@HoeType2} named {@HoeName8}:
+   set {_ammount} to 10
+   set {ammount2::%loop-player's uuid%} to 9
+   set {ammount::%loop-player's uuid%} to {_ammount}
+  if loop-player is holding {@HoeType2} named {@HoeName9}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+  if loop-player is holding {@HoeType2} named {@HoeName10}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 1
+  if loop-player is holding {@HoeType3} named {@HoeName1}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 2
+  if loop-player is holding {@HoeType3} named {@HoeName2}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 3
+  if loop-player is holding {@HoeType3} named {@HoeName3}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 4
+  if loop-player is holding {@HoeType3} named {@HoeName4}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 5
+  if loop-player is holding {@HoeType3} named {@HoeName5}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 6
+  if loop-player is holding {@HoeType3} named {@HoeName6}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 7
+  if loop-player is holding {@HoeType3} named {@HoeName7}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 8
+  if loop-player is holding {@HoeType3} named {@HoeName8}:
+   set {_ammount} to 10
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount3::%loop-player's uuid%} to 9
+  if loop-player is holding {@HoeType3} named {@HoeName9}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 10
+  if loop-player is holding {@HoeType3} named {@HoeName10}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 10
+   set {ammount4::%loop-player's uuid%} to 1
+  if loop-player is holding {@HoeType4} named {@HoeName1}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 10
+   set {ammount4::%loop-player's uuid%} to 2
+  if loop-player is holding {@HoeType4} named {@HoeName2}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 10
+   set {ammount4::%loop-player's uuid%} to 3
+  if loop-player is holding {@HoeType4} named {@HoeName3}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 10
+   set {ammount4::%loop-player's uuid%} to 4
+  if loop-player is holding {@HoeType4} named {@HoeName4}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 10
+   set {ammount4::%loop-player's uuid%} to 5
+  if loop-player is holding {@HoeType4} named {@HoeName5}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 10
+   set {ammount4::%loop-player's uuid%} to 6
+  if loop-player is holding {@HoeType4} named {@HoeName6}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 10
+   set {ammount4::%loop-player's uuid%} to 7
+  if loop-player is holding {@HoeType4} named {@HoeName7}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 10
+   set {ammount4::%loop-player's uuid%} to 8
+  if loop-player is holding {@HoeType4} named {@HoeName8}:
+   set {_ammount} to 10
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount3::%loop-player's uuid%} to 10
+   set {ammount4::%loop-player's uuid%} to 9
+  if loop-player is holding {@HoeType4} named {@HoeName9}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 10
+   set {ammount4::%loop-player's uuid%} to 10 
+  if loop-player is holding {@HoeType4} named {@HoeName10}:
+   set {_ammount} to 10
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 10
+   set {ammount3::%loop-player's uuid%} to 10
+   set {ammount4::%loop-player's uuid%} to 10 
+  if loop-player is holding Air:
+   set {_ammount} to 0
+   set {ammount::%loop-player's uuid%} to {_ammount}
+   set {ammount2::%loop-player's uuid%} to 0
+   set {ammount3::%loop-player's uuid%} to 0
+   set {ammount4::%loop-player's uuid%} to 0
+command /ammount:
+ trigger:
+  Send "%{ammount::%player's uuid%}% it is" to player
+  Send "%{ammount2::%player's uuid%}% it is2" to player
+  Send "%{ammount3::%player's uuid%}% it is3" to player
+  Send "%{ammount4::%player's uuid%}% it is4" to player

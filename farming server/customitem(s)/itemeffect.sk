@@ -1,0 +1,25 @@
+on armor change:
+	if helmet of player is unbreakable golden helmet of protection 5 named "&6&lKING'S CROWN":
+		apply health boost of tier 20 to player for 100 hours
+	else:
+		remove health boost from player
+		
+on armor change:
+	if boots of player is unbreakable netherite boots of protection 5 named "&b&lGod &f&lSpeed":
+		apply speed of tier 2 to player for 100 hours
+	else:
+		remove speed from player
+on right click:
+	if player's tool is unbreakable golden sword of sharpness 5 named "&6&lZeus's &b&lBolt":
+	make console execute command "attribute %player% minecraft:generic.attack_damage base set 15"
+on right click:
+	if player's tool is unbreakable golden sword of sharpness 5 named "&6&lZeus's &b&lBolt":
+		if difference between now and {%player's uuid%.aresSword.lastUsed} is less than 15 seconds:
+			message "&c&l!!!Wait 15 seconds In Between Use!!!" to player
+		else:
+			play sound "entity.lightning_bolt.thunder" with volume 1 to the player
+			strike lightning at the targeted block
+			strike lightning at the targeted block
+			strike lightning at the targeted block
+			strike lightning at the targeted block
+			set {%player's uuid%.aresSword.lastUsed} to now

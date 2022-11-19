@@ -1,0 +1,158 @@
+options:
+ WName: "&r&bBale Of Wheat"
+ WLore: "&r&564 Wheat"
+ WEnch: "Thorns 1"
+ CName: "&r&bEnchanted Carrot"
+ CLore: "&r&564 Carrot"
+
+command /autocompress <text="true/false">:
+  aliases: /ac,
+  permission: command.ac
+  permission message: "No Perm's"
+  trigger:
+    if player has permission "command.ac4":
+      if arg-1 is "true":
+        set {ac4::%player's uuid%} to 1
+        set {ac3::%player's uuid%} to 1
+        set {ac2::%player's uuid%} to 1
+        set {ac::%player's uuid%} to 1
+      else if arg-1 is "false":  
+        set {ac4::%player's uuid%} to 0
+        set {ac3::%player's uuid%} to 0
+        set {ac2::%player's uuid%} to 0
+        set {ac::%player's uuid%} to 0
+        stop
+      else:
+        set {ac4::%player's uuid%} to 0
+        set {ac3::%player's uuid%} to 0
+        set {ac2::%player's uuid%} to 0
+        set {ac::%player's uuid%} to 0
+    if player has permission "command.ac3":
+      if arg-1 is "true":
+        set {ac3::%player's uuid%} to 1
+        set {ac2::%player's uuid%} to 1
+        set {ac::%player's uuid%} to 1
+      else if arg-1 is "false":  
+        set {ac3::%player's uuid%} to 0
+        set {ac2::%player's uuid%} to 0
+        set {ac::%player's uuid%} to 0
+        stop
+      else:
+        set {ac3::%player's uuid%} to 0
+        set {ac2::%player's uuid%} to 0
+        set {ac::%player's uuid%} to 0
+    if player has permission "command.ac2":
+      if arg-1 is "true":
+        set {ac2::%player's uuid%} to 1
+        set {ac::%player's uuid%} to 1
+      else if arg-1 is "false":  
+        set {ac2::%player's uuid%} to 0
+        set {ac::%player's uuid%} to 0
+        stop
+      else:
+        set {ac2::%player's uuid%} to 0
+        set {ac::%player's uuid%} to 0
+    if player has permission "command.ac":
+      if arg-1 is "true":
+        set {ac::%player's uuid%} to 1
+      else if arg-1 is "false":  
+        set {ac::%player's uuid%} to 0
+        stop
+      else:
+        Send "&l&7Format: &f&l/ac {True/False}" to player
+        set {ac::%player's uuid%} to 0
+        stop
+	  
+on block break:
+  if {ac::%player's uuid%} = 1:
+    if player has 64 of Wheat:
+      remove 64 of Wheat from player
+      add 1 of Hay Bale of thorns 1 named {@WName} with the lore {@WLore} to player 
+  else:
+    stop
+	
+on block break:
+  if {ac::%player's uuid%} = 1:
+    if player has 64 of Hay Bale of thorns 1 named {@WName} with the lore {@WLore}:
+      remove 64 of Hay Bale of thorns 1 named {@WName} with the lore {@WLore} from player
+      add 1 of unbreakable Yellow Terracotta of thorns 1 named "&bEnchanted Wheat Bale" with the lore "&r&54096 Wheat" to player 
+  else:
+    stop
+
+on block break:
+  if {ac::%player's uuid%} = 1:
+    if player has 64 of unbreakable Yellow Terracotta of thorns 1 named "&bEnchanted Wheat Bale" with the lore "&r&54096 Wheat":
+      remove 64 of unbreakable Yellow Terracotta of thorns 1 named "&bEnchanted Wheat Bale" with the lore "&r&54096 Wheat" from player
+      add 1 of unbreakable Block of Raw Copper of thorns 1 named "&4&lForbidden &0&lWheat" with the lore "&r&5262144 Wheat" to player 
+  else:
+    stop
+	
+on block break:
+  if {ac2::%player's uuid%} = 1:
+    if player has 64 of Carrot:
+      remove 64 of Carrot from player
+      add 1 of Glowstone Dust of thorns 1 named {@CName} with the lore {@CLore} to player 
+  else:
+    stop
+	
+on block break:
+  if {ac2::%player's uuid%} = 1:
+    if player has 64 of Glowstone Dust of thorns 1 named {@CName} with the lore {@CLore}:
+      remove 64 of Glowstone Dust of thorns 1 named {@CName} with the lore {@CLore} from player
+      add 1 of Orange Concrete Powder of thorns 1 named "&r&bGreater Enchanted Carrot" with the lore "&r&54096 Carrot" to player 
+  else:
+    stop
+
+on block break:
+  if {ac2::%player's uuid%} = 1:
+    if player has 64 of Orange Concrete Powder of thorns 1 named "&r&bGreater Enchanted Carrot" with the lore "&r&54096 Carrot":
+      remove 64 of  Orange Concrete Powder of thorns 1 named "&r&bGreater Enchanted Carrot" with the lore "&r&54096 Carrot" from player
+      add 1 of Redstone Block of thorns 1 named "&r&4&lForbidden &r&f&lCarrot" with the lore "&r&5262144 Carrot" to player 
+  else:
+    stop
+
+on block break:
+  if {ac3::%player's uuid%} = 1:
+    if player has 64 of Potato:
+      remove 64 Potato from player
+      add 1 of Glowstone of thorns 1 named "&r&bEnchanted Block of Potatos" with the lore "&r&564 Potatos" to player
+  else:
+    stop
+on block break:
+  if {ac3::%player's uuid%} = 1:
+    if player has 64 of Glowstone of thorns 1 named "&r&bEnchanted Block of Potatos" with the lore "&r&564 Potatos":
+      remove 64 Glowstone of thorns 1 named "&r&bEnchanted Block of Potatos" with the lore "&r&564 Potatos" from player
+      add 1 of Block of Raw Gold of thorns 1 named "&r&bGreater Enchanted Block of Potatos" with the lore "&r&54096 Potatos" to player
+  else:
+    stop
+on block break:
+  if {ac3::%player's uuid%} = 1:
+    if player has 64 of Block of Raw Gold of thorns 1 named "&r&bGreater Enchanted Block of Potatos" with the lore "&r&54096 Potatos":
+      remove 64 Block of Raw Gold of thorns 1 named "&r&bGreater Enchanted Block of Potatos" with the lore "&r&54096 Potatos" from player
+      add 1 of Poisonous Potato of thorns 1 named "&r&4&lForbidden &r&6&lPotato"    with the lore "&r&5262144 Potatos" to player
+  else:
+    stop
+
+on block break:
+  if {ac4::%player's uuid%} = 1:
+    if player has 64 of Beetroot:
+      remove 64 Beetroot from player
+      add 1 of Red Glazed Terracotta of thorns 1 named "&r&bEnchanted Beetroot" with the lore "&r&564 Beetroot" to player
+  else:
+    stop
+	
+on block break:
+  if {ac4::%player's uuid%} = 1:
+    if player has 64 of Red Glazed Terracotta of thorns 1 named "&r&bEnchanted Beetroot" with the lore "&r&564 Beetroot":
+      remove 64 Red Glazed Terracotta of thorns 1 named "&r&bEnchanted Beetroot" with the lore "&r&564 Beetroot" from player
+      add 1 of Crimson Hyphae of thorns 1 named "&r&bGreater Enchanted Beetroot" with the lore "&r&54096 Beetroot" to player
+  else:
+    stop
+	
+on block break:
+  if {ac4::%player's uuid%} = 1:
+    if player has 64 of Crimson Hyphae of thorns 1 named "&r&bGreater Enchanted Beetroot" with the lore "&r&54096 Beetroot":
+      remove 64 Crimson Hyphae of thorns 1 named "&r&bGreater Enchanted Beetroot" with the lore "&r&54096 Beetroot" from player
+      add 1 of Nether Bricks of thorns 1 named "&r&4&lForbidden &r&c&lBeetroot" with the lore "&r&5262144 Beetroot" to player
+  else:
+    stop

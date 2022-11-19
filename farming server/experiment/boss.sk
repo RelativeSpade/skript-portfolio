@@ -1,0 +1,40 @@
+command /customentity [<text>] [<number>]:
+  usage: customentity Mob - AW (Ancient Warriors), BC (Beacon Cultists), Boss
+  permission: operator
+  trigger:
+    if arg-1 is "boss":
+      broadcast "&cBoss has been summoned by &f%player%&c!"
+      spawn 1 zombie at location of player
+      equip last spawned zombie with diamond helmet of protection 10
+      equip last spawned zombie with diamond chestplate of protection 10
+      equip last spawned zombie with diamond leggings of protection 10
+      equip last spawned zombie with diamond boots of protection 10
+      set last spawned zombie's max health to 250
+      set last spawned zombie's health to 250
+      apply potion of speed of tier 2 to last spawned zombie for 999999 seconds
+      set the display name of the last spawned zombie to "&c&lBoss"
+    if arg-1 is "AW":
+      spawn 1 husk at location of player
+      equip last spawned husk with diamond helmet of protection 10
+      equip last spawned husk with diamond chestplate of protection 10
+      equip last spawned husk with diamond leggings of protection 10
+      equip last spawned husk with diamond boots of protection 10
+      set last spawned husk's max health to 100
+      set last spawned husk's health to 100
+      apply potion of speed of tier 2 to last spawned husk for 999999 seconds
+      set the display name of the last spawned husk to "&6&lAncient Warrior"
+    if arg-1 is "BC":
+      spawn 1 wither skeleton at location of player
+      equip last spawned wither skeleton with diamond helmet of protection 10
+      equip last spawned wither skeleton with diamond chestplate of protection 10
+      equip last spawned wither skeleton with diamond leggings of protection 10
+      equip last spawned wither skeleton with diamond boots of protection 10
+      set last spawned wither skeleton's max health to 100
+      set last spawned wither skeleton's health to 100
+      apply potion of speed of tier 2 to last spawned wither skeleton for 999999 seconds
+      set the display name of the last spawned zombie to "&0&lBeacon Cultist"
+
+every 1 second:
+  loop all zombies:
+    if name of zombies is "&c&lBoss":
+      broadcast "Success!"

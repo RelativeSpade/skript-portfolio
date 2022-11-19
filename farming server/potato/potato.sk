@@ -1,0 +1,16 @@
+on block break:
+    if {ammount3::%player's uuid%} > 0:
+        if event-block is ripe potato plant:
+            set event-block to freshly planted carrot plant
+            set {_multi} to {multi::%player's uuid%}*{ammount3::%player's uuid%}
+            set {_item} to potato
+            give player {_multi} of {_item}
+            wait 1 seconds
+            set event-block to stage 4 potato plant
+            wait 1 seconds
+            set event-block to ripe potato plant
+            add 1 to {cfarm::%player's uuid%}
+    else if event-block is ripe potato plant:
+        cancel event
+        send "&r&l&cWRONG TOOL!!" to player
+        stop
