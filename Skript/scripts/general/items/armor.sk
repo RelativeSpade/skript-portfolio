@@ -1,0 +1,42 @@
+Every 15 second:
+	loop all players:
+		set loop-player's food level to 10
+
+on armor change:
+	if player's helmet is unbreakable golden helmet named "&eFallen &6King's Crown":
+		set {health::%player%} to true
+
+on join:
+  set scaled health of player to 10
+  while player is online:
+    send action bar "&c%player's health%/%player's max health% ❤" to player
+    wait 1 second # Do not remove this! If you do it will crash your server.
+
+every 1 seconds:
+	loop all players:
+		if {health::%loop-player%} is true:
+			if loop-player's helmet is unbreakable golden helmet named "&eFallen &6King's Crown":
+				if {undeadking::%loop-player%} is true:
+					set {health.%loop-player%} to 60
+					
+					set the maximum health of the loop-player to {health.%loop-player%}  				
+				else:
+					set {health::%loop-player%} to true
+					set {health.%loop-player%} to 50
+					
+					set the maximum health of the loop-player to {health.%loop-player%}
+			else:
+				set {health::%loop-player%} to false
+				set {health.%loop-player%} to 10
+				set the maximum health of the loop-player to {health.%loop-player%}
+every 3 seconds:
+	loop all players:
+		if health of the loop-player > maximum health of the loop-player:
+			set health of the loop-player to maximum health of the loop-player
+	
+command /health:
+	permission: op
+	trigger:
+		send "%{health.%player%}%" to player
+		send "%{health::%player%}%"
+		set {health::%player%} to true

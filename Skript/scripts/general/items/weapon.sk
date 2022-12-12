@@ -1,0 +1,19 @@
+on damage:
+	attacker is player:
+		set {_nbt} to nbt compound of attacker's tool
+		set {_nbt2} to nbt compound of attacker's off hand tool
+		if tag "tag;custom;dmg" of {_nbt} is set:
+			set {_dmg::%attacker%} to  "%tag "tag;custom;dmg" of {_nbt}%" parsed as number
+			set {_+dmg::%attacker%} to  "%tag "tag;custom;+dmg" of {_nbt2}%" parsed as number
+			set {dmgtotal::%attacker%} to {_dmg::%attacker%} + {_+dmg::%attacker%}
+			damage victim by {dmgtotal::%attacker%}
+			
+on damage:
+	victim is zombie:
+		set {hp} to victim's health
+		set {mhp} to maximum health of victim
+		set the name of the victim to "&f&lTraining Dummy &8[&c%{hp}% &8/ &c%{mhp}%&8]" 
+		
+on damage:
+	if attacker's tool is stick named "&5Knockback Thy Servants":
+		push the victim backwards at speed 10

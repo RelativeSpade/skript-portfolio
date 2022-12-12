@@ -1,0 +1,92 @@
+command /chatcolor:
+	trigger:
+		set {chatcolor} to a new chest inventory with 1 row named "&k||&l&bFishing Sim&0&k|| &cChat Color"
+		set slot 0 of {chatcolor} to white concrete named "&fWhite" with the lore "&cUnlocked: &f%{white::%player's uuid%}%"
+		set slot 1 of {chatcolor} to black concrete named "&0Black" with the lore "&cUnlocked: &f%{black::%player's uuid%}%"
+		set slot 2 of {chatcolor} to Orange concrete named "&6Orange" with the lore "&cUnlocked: &f%{orange::%player's uuid%}%"
+		set slot 3 of {chatcolor} to Red concrete named "&4Red" with the lore "&cUnlocked: &f%{red::%player's uuid%}%"
+		set slot 4 of {chatcolor} to Blue concrete named "&9Blue" with the lore "&cUnlocked: &f%{blue::%player's uuid%}%"
+		set slot 5 of {chatcolor} to Cyan concrete named "&bCyan" with the lore "&cUnlocked: &f%{cyan::%player's uuid%}%"
+		set slot 6 of {chatcolor} to Pink concrete named "&dPink" with the lore "&cUnlocked: &f%{pink::%player's uuid%}%"
+		set slot 7 of {chatcolor} to Lime concrete named "&2Green" with the lore "&cUnlocked: &f%{green::%player's uuid%}%"
+		set slot 8 of {chatcolor} to Purple concrete named "&5Purple" with the lore "&cUnlocked: &f%{purple::%player's uuid%}%"
+		open {chatcolor} to player
+		
+on inventory click:
+	if name of event-inventory is "&k||&l&bFishing Sim&0&k|| &cChat Color":
+		cancel event 
+		if index of event-slot is 0:
+			if {white::%player's uuid%} = true:
+				set {chat::%player's uuid%} to "f"
+				send "&fChatColor" to player
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+		if index of event-slot is 1:
+			if {black::%player's uuid%} = true:
+				set {chat::%player's uuid%} to "0"
+				send "&0ChatColor" to player
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+		if index of event-slot is 2:
+			if {orange::%player's uuid%} = true:
+				set {chat::%player's uuid%} to "6"
+				send "&6ChatColor" to player
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+		if index of event-slot is 3:
+			if {red::%player's uuid%} = true:
+				set {chat::%player's uuid%} to "4"
+				send "&4ChatColor" to player
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+		if index of event-slot is 4:
+			if {blue::%player's uuid%} = true:
+				set {chat::%player's uuid%} to "9"
+				send "&9ChatColor" to player
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+		if index of event-slot is 5:
+			if {cyan::%player's uuid%} = true:
+				set {chat::%player's uuid%} to "b"
+				send "&bChatColor" to player
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+		if index of event-slot is 6:
+			if {pink::%player's uuid%} = true:
+				set {chat::%player's uuid%} to "d"
+				send "&dChatColor" to player
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+		if index of event-slot is 7:
+			if {green::%player's uuid%} = true:
+				set {chat::%player's uuid%} to "2"
+				send "&2ChatColor" to player
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+		if index of event-slot is 8:
+			if {purple::%player's uuid%} = true:
+				set {chat::%player's uuid%} to "5"
+				send "&5ChatColor" to player
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+command /colorunlock:
+	permission: op
+	trigger:
+		set {white::%player's uuid%} to true
+		set {black::%player's uuid%} to true
+		set {orange::%player's uuid%} to true
+		set {red::%player's uuid%} to true
+		set {blue::%player's uuid%} to true
+		set {cyan::%player's uuid%} to true
+		set {pink::%player's uuid%} to true
+		set {green::%player's uuid%} to true
+		set {purple::%player's uuid%} to true

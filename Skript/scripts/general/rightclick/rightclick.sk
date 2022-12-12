@@ -1,0 +1,23 @@
+on right click:
+	if player is holding nametag named "&c&f&l[&6&lALPHA&f&l] &f&lTAG":
+		set {alpha::%player's uuid%} to true
+		remove 1 of nametag named "&c&f&l[&6&lALPHA&f&l] &f&lTAG" from player
+		send "&c&l<Console&c&l>&f: &f&l[&6&lALPHA&f&l] Unlocked"
+	if player is holding nametag named "&f&l[&4&l<3&f&l] &f&lTag":
+		set {<3::%player's uuid%} to true
+		remove 1 of nametag named "&f&l[&4&l<3&f&l] &f&lTag" from player
+		send "&c&l<Console&c&l>&f: &f&l[&4&l<3&f&l] Unlocked"
+	if player is holding nametag named "&f&l[&9&lFROSTY&f&l] &f&lTag":
+		set {frosty::%player's uuid%} to true
+		remove 1 of nametag named "&c&f&l&f&l[&9&lFROSTY&f&l] &f&lTag" from player
+		send "&c&l<Console&c&l>&f: &f&l[&9&lFROSTY&f&l] Unlocked"
+	if player is holding nametag named "&f&l[&9&lI&d&l<3&9&lFishing&f&l] &f&lTag":
+		set {i3f::%player's uuid%} to true
+		remove 1 of nametag named "&f&l[&9&lI&d&l<3&9&lFishing&f&l] &f&lTag" from player
+		send "&c&l<Console&c&l>&f: &f&l[&9&lI&d&l<3&9&lFishing&f&l] Unlocked"
+	if player is holding paper named "&f&l[&b&l100K Tokens&f&l]":
+		add 100000 to {tokens::%player's uuid%}
+		remove 1 paper named "&f&l[&b&l100K Tokens&f&l]" from player
+	if player is holding paper named "&f&l[&b&l/FLY&f&l]":
+		execute console command "/lp user %player% permission set essentials.fly"
+		remove 1 paper named "&f&l[&b&l/FLY&f&l]" from player

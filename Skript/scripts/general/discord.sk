@@ -1,0 +1,3 @@
+command /discord:
+	trigger:
+		send "&9&lDISCORD&f: &f&lhttps://discord.gg/x9Swf5ArHJ" to player

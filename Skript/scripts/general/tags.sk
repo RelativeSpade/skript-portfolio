@@ -1,0 +1,80 @@
+command /tag:
+	trigger:
+		set {tags} to a new chest inventory with 6 row with name "&k||&l&bFishing Sim&0&k|| &cTags"
+		set slot 0,1,2,3,4,5,6,7,8,9,17,18,26,27,35,36,44,45,46,47,48,49,50,51,52,53 of {tags} to gray stained glass pane named " " 
+		set slot 10,11,12,13,14,15,16,19,20,21,22,23,24,25,28,29,30,31,32,33,34,37,38,39,40,41,42,43 of {tags} to name tag named "&f&lComing Soon..."
+		set slot 10 of {tags} to name tag named "&f&l[&6&lALPHA&f&l]" with the lore "&f&r&cUnlocked: &f%{alpha::%player's uuid%}%"
+		set slot 11 of {tags} to name tag named "&f&l[&d&lSPADES <3&f&l]" with the lore "&f&r&cUnlocked: &f%{spade::%player's uuid%}%"
+		set slot 12 of {tags} to name tag named "&f&l[&4&l<3&f&l]" with the lore "&f&r&cUnlocked: &f%{<3::%player's uuid%}%"
+		set slot 13 of {tags} to name tag named "&f&l[&9&lFROSTY&f&l]" with the lore "&f&r&cUnlocked: &f%{frosty::%player's uuid%}%"
+		set slot 14 of {tags} to name tag named "&f&l[&9&lI&d&l<3&9&lFishing&f&l]" with the lore "&f&r&cUnlocked: &f%{i3f::%player's uuid%}%"
+		set slot 15 of {tags} to name tag named "&f&l[&4&lSTAFF&f&l]" with the lore "&f&r&cUnlocked: &f%{staff::%player's uuid%}%"
+		set slot 49 of {tags} to barrier named "&cRemove Tag(s)"
+		open {tags} to player
+		
+on inventory click:
+	if name of event-inventory is "&k||&l&bFishing Sim&0&k|| &cTags":
+		cancel event
+		if index of event-slot is 10:
+			if {alpha::%player's uuid%} = true:
+				set player's suffix to "&f&l[&6&lALPHA&f&l]"
+				send "&c&l<Console&c&l>&f: Prefix Changed to &f&l[&6&lALPHA&f&l]"
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+				close player's inventory
+		if index of event-slot is 11:
+			if {spade::%player's uuid%} = true:
+				set player's suffix to "&f&l[&d&lSPADES <3&f&l]"
+				send "&c&l<Console&c&l>&f: Prefix Changed to &f&l[&d&lSPADES <3&f&l]"
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+				close player's inventory
+		if index of event-slot is 12:
+			if {<3::%player's uuid%} = true:
+				set player's suffix to "&f&l[&4&l<3&f&l]"
+				send "&c&l<Console&c&l>&f: Prefix Changed to &f&l[&4&l<3&f&l]"
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+				close player's inventory
+		if index of event-slot is 13:
+			if {frosty::%player's uuid%} = true:
+				set player's suffix to "&f&l[&9&lFROSTY&f&l]"
+				send "&c&l<Console&c&l>&f: Prefix Changed to &f&l[&9&lFROSTY&f&l]"
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+				close player's inventory
+		if index of event-slot is 14:
+			if {i3f::%player's uuid%} = true:
+				set player's suffix to "&f&l[&9&lI&d&l<3&9&lFishing&f&l]"
+				send "&c&l<Console&c&l>&f: Prefix Changed to &f&l[&9&lI&d&l<3&9&lFishing&f&l]"
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+				close player's inventory
+		if index of event-slot is 15:
+			if {staff::%player's uuid%} = true:
+				set player's suffix to "&f&l[&4&lSTAFF&f&l]"
+				send "&c&l<Console&c&l>&f: Prefix Changed to &f&l[&4&lSTAFF&f&l]"
+				close player's inventory
+			else:
+				send "&c&l<Console&c&l>&f: Not Unlocked" to player
+				close player's inventory
+		
+		if index of event-slot is 49:
+			set player's suffix to ""
+			send "&c&l<Console&c&l>&f: Tag Cleared!"
+			close player's inventory
+			
+command /tagunlock:
+	permission: op
+	trigger:
+		set {staff::%player's uuid%} to true
+		set {i3f::%player's uuid%} to true
+		set {alpha::%player's uuid%} to true
+		set {spade::%player's uuid%} to true
+		set {<3::%player's uuid%} to true
+		set {frosty::%player's uuid%} to true

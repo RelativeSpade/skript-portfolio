@@ -1,0 +1,75 @@
+options:
+
+
+
+# KEYS
+ KeyType: TRIPWIRE HOOK
+ KeyName: "&6King's &7Key"
+ KeyLore: "&7Right Click on Crate to Use."
+
+
+on right click on gold block:
+	cancel event
+	if block under event-block is barrier:
+		if player is holding {@KeyType} named {@KeyName} with lore {@KeyLore}:
+			set {_r} to a random integer from 1 to 100
+		if {_r} is between 1 and 16:
+			set {_item} to sunflower named "&6King's Token" with the lore "&ePerhaps some would want this..."
+			set {_num} to 16
+			give player {_num} of {_item}
+			Send "&r&l&6You Got %{_num}% %{_item}%" to player
+			play sound "BLOCK_CHEST_OPEN" at volume 100 and pitch 1 for player
+			remove 1 of {@KeyType} named {@KeyName} with lore {@KeyLore} from player's inventory
+		if {_r} is between 17 and 33:
+			set {_item} to magma cream named "&f&l|&6&lCat Toy&f&l|" with the lore "&f&r&lPerhaps Someone Would Want This?"
+			set {_num} to 16
+			give player {_num} of {_item}
+			Send "&r&l&6You Got %{_num}% %{_item}%" to player
+			play sound "BLOCK_CHEST_OPEN" at volume 100 and pitch 1 for player
+			remove 1 of {@KeyType} named {@KeyName} with lore {@KeyLore} from player's inventory
+		if {_r} is between 34 and 38:
+			set {_item} to paper named "&f&l[&b&l/FLY&f&l]" with the lore "&7Right Click to Redeem."
+			set {_num} to 1
+			give player {_num} of {_item}
+			Send "&r&l&6You Got %{_num}% %{_item}%" to player
+			play sound "BLOCK_CHEST_OPEN" at volume 100 and pitch 1 for player
+			remove 1 of {@KeyType} named {@KeyName} with lore {@KeyLore} from player's inventory
+		if {_r} is between 39 and 57:
+			set {_item} to paper named "&f&l[&b&l100K Tokens&f&l]" with the lore "&7Right Click to Redeem."
+			set {_num} to 1
+			give player {_num} of {_item}
+			Send "&r&l&6You Got %{_num}% %{_item}%" to player
+			play sound "BLOCK_CHEST_OPEN" at volume 100 and pitch 1 for player
+			remove 1 of {@KeyType} named {@KeyName} with lore {@KeyLore} from player's inventory
+		if {_r} is between 58 and 68:
+			set {_item} to  name tag named "&f&l[&9&lFROSTY&f&l] &f&lTag" with the lore "&7Right Click to Redeem."
+			set {_num} to 1
+			give player {_num} of {_item}
+			Send "&r&l&6You Got %{_num}% %{_item}%" to player
+			play sound "BLOCK_CHEST_OPEN" at volume 100 and pitch 1 for player
+			remove 1 of {@KeyType} named {@KeyName} with lore {@KeyLore} from player's inventory
+		if {_r} is between 69 and 74:
+			set {_item} to unbreakable netherite sword of sharpness 1 with hidden enchants flag named "&4&lBloody &7Sword" with the lore "&c-------------","","&f|&8|&f| &c50 Damage","&7enemies may bleed on contact","","&c-------------","&6&lLEGENDARY"
+				
+				
+		
+on left click on gold block:
+	if block under event-block is barrier:
+		cancel event
+		set {_gui} to a new chest inventory with 3 row with name "&f&k|&0&k|&f&k|&6King's &7Crate&f&k|&0&k|&f&k|"
+		set slot 0 of {_gui} to 16 sunflower named "&6King's Token" with the lore "&ePerhaps some would want this...","&f&l16%%"
+		set slot 1 of {_gui} to 16 magma cream named "&f&l|&6&lCat Toy&f&l|" with the lore "&f&r&lPerhaps Someone Would Want This?","&f&l16%%"
+		set slot 2 of {_gui} to paper named "&f&l[&b&l/FLY&f&l]" with the lore "&7Right Click to Redeem.","&f&l4%%"
+		set slot 3 of {_gui} to name tag named "&f&l[&9&lFROSTY&f&l] &f&lTag" with the lore "&7Right Click to Redeem.","&f&l10%%"
+		set slot 4 of {_gui} to unbreakable netherite sword of sharpness 1 with hidden enchants flag named "&4&lBloody &7Sword" with the lore "&c-------------","","&f|&8|&f| &c50 Damage","&7enemies may bleed on contact","","&c-------------","&f&l5%%"
+		set slot 5 of {_gui} to paper named "&f&l[&b&l100K Tokens&f&l]" with the lore "&7Right Click to Redeem.","&f&l15%%"
+		open {_gui} to player
+on inventory click:
+	if name of event-inventory is "&f&k|&0&k|&f&k|&6King's &7Crate&f&k|&0&k|&f&k|":
+		cancel event
+
+command /key:
+	permission: spade.key
+	permission message: "No Perm's"
+	trigger:
+		give player 1 {@KeyType} named {@KeyName} with lore {@KeyLore}

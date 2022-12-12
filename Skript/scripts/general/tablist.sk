@@ -1,0 +1,13 @@
+options:
+ Header: &c&lWelcome to the Server!%nl%
+ Footer:%nl%&a&lFishingSimm.minehut.gg
+every second:
+	set {Online} to number of all players
+on join:
+    set player's tab list header to "{@Header}"
+    set player's tab list footer to "{@Footer}"
+
+command /online:
+	permission: op
+	trigger:
+		send {Online} to player

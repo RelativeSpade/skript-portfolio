@@ -1,0 +1,17 @@
+every 1 second:
+	loop all players:
+		wipe loop-player's sidebar
+		set name of sidebar of loop-player to "&b&lFishing Simulator"
+		set score "&7&m---------------------" in sidebar of loop-player to 8
+		set score "&b&l✩ &c&lLevel&7: &f%{level::%loop-player's uuid%}%" in sidebar of loop-player to 6
+		set score "" in sidebar of loop-player to 5
+		set score "&b&l✩ &c&lTokens&7: &f%{tokens::%loop-player's uuid%}%⛃" in sidebar of loop-player to 4
+		set score "&7&m--------------------" in sidebar of loop-player to 1
+		set score "&fVersion 0.1" in sidebar of loop-player to 0
+		
+command /reset:
+	permission: operator
+	permission message: "No Perm's"
+	trigger:
+		set {cash::%player's uuid%} to 10000
+		set {tokens::%player's uuid%} to 100
