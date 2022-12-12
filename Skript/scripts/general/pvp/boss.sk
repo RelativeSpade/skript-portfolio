@@ -1,0 +1,36 @@
+on right click on entity:
+	if name of entity is "&c&lBoss":
+		set {_boss} to a new chest inventory with 3 row with name "&cBosses"
+		set slot 0,1,2,3,4,5,6,7,8,18,19,20,21,22,23,24,25,26 of {_boss} to gray stained glass pane named " "
+		set slot 10 of {_boss} to black glazed terracotta named "&4&lFallen &8&lKnight" with the lore "&f-------------","     &f1x &4Key","&f-------------"
+		open {_boss} to player
+
+
+on inventory click:
+	if name of event-inventory is "&cBosses":
+		cancel event
+		if index of event-slot is 10:
+			if player has 1 of black glazed terracotta named "&4&lFallen &8&lKnight's Key":
+				send "&c&lCOMING SOON..." to player
+				#teleport player to location(-56,65,-265,world "world",0,0)
+				#remove 1 of black glazed terracotta named "&4&lFallen &8&lKnight's Key" from player
+				execute console command "/mm mobs spawn FallenKnight world,-62,65,-265,0,0"
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+on death of player:
+	wait 15
+	teleport victim to {spawn}
+				
+on death:
+	if name of victim contains "Fallen":
+		#Clear the drops
+		teleport attacker to {spawn}

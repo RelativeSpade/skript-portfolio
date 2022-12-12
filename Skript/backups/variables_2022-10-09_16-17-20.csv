@@ -1,0 +1,11 @@
+# === Skript's variable storage ===
+# Please do not modify this file manually!
+#
+# version: 2.6.3
+
+ammount, long, 0000000000000007
+cfarm, long, 0000000000000949
+mcost, double, 4063880000000000
+multi, long, 0000000000000006
+online, long, 0000000000000001
+

@@ -1,0 +1,77 @@
+
+on fish:
+	chance of 0.1%:
+		set {tag1::%player%} to true
+	chance of 0.1%:
+		set {tag2::%player%} to true
+	chance of 0.1%:
+		set {tag3::%player%} to true
+	chance of 2.5%:
+		set {trade::%player%} to true
+	chance of 5%:
+		set {boss1::%player%} to true
+	chance of 0.1%:
+		set {kkey::%player%} to true
+	if fish state = caught fish:
+		play sound "entity.experience_orb.pickup" to player
+		if {tag1::%player%} is true:
+			give player 1 nametag named "&f&l[&4&l<3&f&l] &f&lTag" with the lore "&f&cRight Click to Redeem" 
+			set {tag1::%player%} to false
+		if {tag2::%player%} is true:
+			give player 1 nametag named "&f&l[&9&lFROSTY&f&l] &f&lTag" with the lore "&f&cRight Click to Redeem" 
+			set {tag2::%player%} to false
+		if {tag3::%player%} is true:
+			give player 1 nametag named "&f&l[&9&lI&d&l<3&9&lFishing&f&l] &f&lTag" with the lore "&f&cRight Click to Redeem" 
+			set {tag3::%player%} to false
+		if {trade::%player%} is true:
+			give player 8 magma cream named "&f&l|&6&lCat Toy&f&l|" with the lore "&f&r&lPerhaps Someone Would Want This?"
+			set {trade::%player%} to false
+		if {kkey::%player%} is true:
+			give player 1 TRIPWIRE HOOK named "&6King's &7Key" with the lore "&7Right Click on Crate to Use."
+			set {kkey::%player%} to false
+		if "%region at player%" contains "desert":
+			if {boss1::%player%} is true:
+				if {boss1counter} < {boss1total}:
+					add 1 to {boss1counter}
+					send "&e&lYou Dont Know Who You're Messing With... &f%{boss1counter}%/%{boss1total}%" to all players
+					set {boss1::%player%} to false
+				else if {boss1counter} >= {boss1total}:
+					send "&e&lNow You've Done It..." to all players
+					spawn 1 husk at location of player
+					set last spawned husk's max health to 500
+					set last spawned husk's health to 500
+					set last spawned husk's damage to 25
+					equip last spawned husk with unbreakable golden helmet named "&eFallen &6King's Crown" with the lore "------------"," ","&f&8&f &f50 &5Health","------------"
+					equip last spawned husk with unbreakable golden chestplate
+					equip last spawned husk with unbreakable golden leggings
+					equip last spawned husk with unbreakable golden boots
+					apply potion of speed of tier 2 to last spawned husk for 999999 seconds
+					set the display name of the last spawned husk to "&6&lDesert King"
+					set {boss1counter} to 0
+
+
+on damage:
+	if victim is husk:
+		set {hp} to victim's health
+		set {mhp} to maximum health of victim
+		set the name of the victim to "&6&lDesert King &8[&c%{hp}% &8/ &c%{mhp}%&8]"
+		
+	
+on death:
+	if victim is husk:
+		if name of victim is "&6&lDesert King &8[&c%{hp}% &8/ &c%{mhp}%&8]":
+			Clear the drops
+			chance of 5%:
+				set {_drop} to unbreakable golden helmet named "&eFallen &6King's Crown" with the lore "&f------------"," ","&f&8&f &f50 &dHealth"," ","&f------------","&9&lRARE"
+				drop {_drop} at victim's location
+				stop
+			chance of 50%:
+				set {_drop} to sunflower named "&6King's Token" with the lore "&ePerhaps some would want this..."
+				give attacker 16 of {_drop}
+				stop
+
+command /resetcount:
+	permission: op
+	trigger:
+		set {boss1counter} to 0
+		set {boss1total} to 10

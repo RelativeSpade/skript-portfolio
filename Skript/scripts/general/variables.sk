@@ -1,0 +1,28 @@
+on first join:
+    set {health::%player%} to false
+    set {uuid::%player%} to player's uuid
+    set {cash::%player's uuid%} to 10000
+    set {tokens::%player's uuid%} to 100
+    set {level::%player's uuid%} to 1
+    set {totalexp::%player's uuid%} to 0
+    set {expreq::%player's uuid%} to 1000
+    set {alpha::%player's uuid%} to false
+    set {spade::%player's uuid%} to true
+    set {<3::%player's uuid%} to false
+    set {frosty::%player's uuid%} to false
+    set {chat::%player's uuid%} to 7
+    set {white::%player's uuid%} to false
+    set {black::%player's uuid%} to false
+    set {orange::%player's uuid%} to false
+    set {i3f::%player's uuid%} to false 
+    set {red::%player's uuid%} to false
+    set {blue::%player's uuid%} to false
+    set {cyan::%player's uuid%} to false
+    set {pink::%player's uuid%} to false
+    set {green::%player's uuid%} to false
+    set {purple::%player's uuid%} to false
+    set {staff::%player's uuid%} to false
+    make console execute command "/rank set %player% default"
+	
+on respawn:
+    teleport player to {spawn}

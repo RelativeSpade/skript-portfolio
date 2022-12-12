@@ -1,0 +1,18 @@
+command /world:
+  aliases: /worlds, /w
+  permission: OP
+  trigger:
+    send "&3&lWorlds"
+    loop all worlds:
+      make console execute command "tellraw %player% {""text"":"" %loop-value%"",""color"":""aqua"",""clickEvent"":{""action"":""run_command"",""value"":""/wtp %loop-value%""},""hoverEvent"":{""action"":""show_text"",""contents"":[{""text"":""&fClick to teleport"",""italic"":true}]}}"
+
+command /wtp <text>:
+  usage: /wtp <world>
+  permission: OP
+  trigger:
+    set {_l} to spawn point of world(arg-1)
+    if {_l} is not set:
+      send "&cThis world does not exist."
+    else:
+      send "&bTeleported you to world %arg-1 parsed as world%&b."
+      teleport player to {_l}

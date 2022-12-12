@@ -1,0 +1,60 @@
+on chat:
+	if {level::%player's uuid%} < 10:
+		set player's prefix to "&f&l[&7%{level::%player's uuid%}%&f&l] &f"
+		set tab list name of player to "%{sort.%player%}%%{rank.%player%}% &f&l[&7%{level::%player's uuid%}%&f&l] &f%player% %player's suffix%"
+	if {level::%player's uuid%} > 10:
+		set player's prefix to "&f&l[&c%{level::%player's uuid%}%&f&l] &f"
+		set tab list name of player to "%{sort.%player%}%%{rank.%player%}% &f&l[&c%{level::%player's uuid%}%&f&l] &f%player% %player's suffix%"
+	if {level::%player's uuid%} > 25:
+		set player's prefix to "&f&l[&9%{level::%player's uuid%}%&f&l] &f"
+		set tab list name of player to "%{sort.%player%}%%{rank.%player%}% &f&l[&9%{level::%player's uuid%}%&f&l] &f%player% %player's suffix%"
+	if {level::%player's uuid%} > 50:
+		set player's prefix to "&0&l[&4%{level::%player's uuid%}%&0&l] &f"
+		set tab list name of player to "%{sort.%player%}%%{rank.%player%}% &0&l[&4%{level::%player's uuid%}%&0&l] &f%player% %player's suffix%"
+	if {level::%player's uuid%} > 100:
+		set player's prefix to "&0&l[&d%{level::%player's uuid%}%&0&l] &f"
+		set tab list name of player to "%{sort.%player%}%%{rank.%player%}% &0&l[&d%{level::%player's uuid%}%&0&l] &f%player% %player's suffix%"
+	if {level::%player's uuid%} > 125:
+		set player's prefix to "&f&k|&0&l[&a&lMAX&0&l]&f&k| &f"
+		set tab list name of player to "%{sort.%player%}%%{rank.%player%}% &f&k|&0&l[&a&lMAX&0&l]&f&k| &f%player% %player's suffix%"	
+	set chat format to "%{rank.%player%}% %player's prefix%&f%player% %player's suffix% &c» &7%message%"
+command /level [<player>] [<number>]:
+	permission: level.sk
+	trigger:
+		set {level::%player's uuid%} to arg-2
+		set {expreq::%player's uuid%} to {level::%player's uuid%}*1000
+		send {level::%player's uuid%} to player
+on join:
+	teleport player to {spawn}
+	
+command /zone:
+	trigger:
+		set {level} to a new chest inventory with 1 row named "&l&cZone(s)"
+		set slot 0,2,4,6,8 of {level} to Blue Stained Glass Pane named " "
+		set slot 1 of {level} to grass named "&aThe Pond" with the lore "&f&lStarting Zone"
+		set slot 3 of {level} to stone named "&8The &7Cavern" with the lore "&c&lLevel 10"
+		set slot 5 of {level} to sand named "&6The &eDesert" with the lore "&c&lLevel 25"
+		set slot 7 of {level} to Netherrack named "&4Hell." with the lore "&c&lLevel 50"
+		open {level} to player
+		
+on inventory click:
+	if name of event-inventory is "&l&cZone(s)":
+		cancel event
+		if index of event-slot is 1:
+			teleport player to location(50,230,-149,world "world",0,0)
+		if index of event-slot is 3:
+			if {level::%player's uuid%} >= 10:
+				teleport player to location(56,218,-159,world "world",0,0)
+			else:
+				send "&c&l<Console&c&l>&f: Zone Not Unlocked" to player
+		if index of event-slot is 5:
+			if {level::%player's uuid%} >= 25:
+				teleport player to location(-122,254,-22,world "world",0,0)
+			else:
+				send "&c&l<Console&c&l>&f: Zone Not Unlocked" to player
+		if index of event-slot is 7:
+			if {level::%player's uuid%} >= 50:
+				teleport player to location(73,33,-102,world "world",0,0)
+			else:
+				send "&c&l<Console&c&l>&f: Zone Not Unlocked" to player
+

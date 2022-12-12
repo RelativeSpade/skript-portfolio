@@ -1,0 +1,262 @@
+command /fish:
+	trigger:
+		set {fish} to a new chest inventory with 3 row with name "&l&cFish"
+		set slot 3,4,5,12,14,21,22,23 of {fish} to blue stained glass pane named " "
+		set slot 13 of {fish} to fishing rod named "&b&lFishing Rod" with lore "&r&7Cost: &c&l100⛃"
+		delete {work::%player's uuid%}
+		open {fish} to player
+
+on right click on a pig:
+	make player execute command "fish"
+on inventory click:
+	if name of event-inventory is "&l&cFish":
+		cancel event
+		if index of event-slot is 13:
+			if {tokens::%player's uuid%} < 100:
+				send "&c&lError: &7Not Enough Tokens!"
+			else:
+				set {tokens::%player's uuid%} to {tokens::%player's uuid%}-100
+				give player unbreakable fishing rod of Lure 1 with hidden enchants flag named "&b&lFishing Rod" with the lore "&f------------", "&r&8|&7|&8| &9Lure&f 1","&r&8|&7|&8| &eLuck of the Sea&f 0 "," "," ", "&f------------"
+				close player's inventory
+
+on rightclick holding a fishing rod:
+	if player is sneaking:
+		cancel event
+		set {enchantrod} to a new chest inventory with 5 row with name "&l&bUpgrade Rod"
+		set slot 0,1,2,3,4,5,6,7,8,9,17,18,26,27,35,36,37,38,39,40,41,42,43,44 of {enchantrod} to gray stained glass pane named " "
+		#Lore
+		set {_ench::*} to line 2 of the lore of the player's held item split at "&9Lure&f "
+		set {lure::%player's uuid%} to {_ench::2}
+		set {lure2::%player's uuid%} to {_ench::2} parsed as number
+		set {cost::%player's uuid%} to {lure2::%player's uuid%}*10000
+		add 1 to {lure2::%player's uuid%}
+		
+		#luck of sea
+		set {_ench2::*} to line 3 of the lore of the player's held item split at "&eLuck of the Sea&f "
+		set {los::%player's uuid%} to {_ench2::2}
+		set {los2::%player's uuid%} to {_ench2::2} parsed as number
+		add 1 to {los2::%player's uuid%}
+		set {cost2::%player's uuid%} to {los2::%player's uuid%}*5000
+		
+		#new ench
+
+
+		#final
+		
+		set slot 20 of {enchantrod} to enchanted book named "&l&9Lure" with the lore "&f------------","&r&c&l%{lure::%player's uuid%}% &f&l-> &a&l%{lure2::%player's uuid%}%", " ","&r&cCost: &f&l%{cost::%player's uuid%}%⛃","&f------------"
+		set slot 24 of {enchantrod} to enchanted book named "&l&eLuck of the Sea" with the lore "&f------------","&r&c&l%{los::%player's uuid%}% &f&l-> &a&l%{los2::%player's uuid%}%", " ","&r&cCost: &f&l%{cost2::%player's uuid%}%⛃","&f------------"
+		if  {lure2::%player's uuid%} > 5 and {los2::%player's uuid%} = 1:
+			set slot 20 of {enchantrod} to enchanted book named "&l&9Lure" with the lore "&f------------","&r&c&l%{lure::%player's uuid%}% &f&l-> &a&lMAX", " ","&r&cCost: &f&l%{cost::%player's uuid%}%⛃","&f------------"
+			set slot 24 of {enchantrod} to enchanted book named "&l&eLuck of the Sea" with the lore "&f------------","&r&c&l%{los::%player's uuid%}% &f&l-> &a&lMAX", " ","&r&cCost: &f&l%{cost2::%player's uuid%}%⛃","&f------------"
+		if {los2::%player's uuid%} = 1:
+			set slot 24 of {enchantrod} to enchanted book named "&l&eLuck of the Sea" with the lore "&f------------","&r&c&l%{los::%player's uuid%}% &f&l-> &a&lMAX", " ","&r&cCost: &f&l%{cost2::%player's uuid%}%⛃","&f------------"
+		if {lure2::%player's uuid%} > 5: 
+			set slot 20 of {enchantrod} to enchanted book named "&l&9Lure" with the lore "&f------------","&r&c&l%{lure::%player's uuid%}% &f&l-> &a&lMAX", " ","&r&cCost: &f&l%{cost::%player's uuid%}%⛃","&f------------"
+			open {enchantrod} to player
+		else:
+			open {enchantrod} to player
+on inventory click:
+	if name of event-inventory is "&l&bUpgrade Rod":
+		cancel event
+		if index of event-slot is 20:
+			if {lure2::%player's uuid%} == 2:
+				if {tokens::%player's uuid%} > {cost::%player's uuid%}:
+					enchant player's tool with lure 2
+					set line 2 of the lore of the player's held item to "&r&8|&7|&8| &9Lure&f 2"
+					subtract {cost::%player's uuid%} from {tokens::%player's uuid%}
+					close player's inventory
+				else:
+					send "&r&c&l<Console> &fNot Enough Tokens!" to player
+			if {lure2::%player's uuid%} == 3:
+				if {tokens::%player's uuid%} > {cost::%player's uuid%}:
+					enchant player's tool with lure 3
+					set line 2 of the lore of the player's held item to "&r&8|&7|&8| &9Lure&f 3"
+					subtract {cost::%player's uuid%} from {tokens::%player's uuid%}
+					close player's inventory
+				else:
+					send "&r&c&l<Console> &fNot Enough Tokens!" to player
+			if {lure2::%player's uuid%} == 4:
+				if {tokens::%player's uuid%} > {cost::%player's uuid%}:
+					enchant player's tool with lure 4
+					set line 2 of the lore of the player's held item to "&r&8|&7|&8| &9Lure&f 4"
+					subtract {cost::%player's uuid%} from {tokens::%player's uuid%}
+					close player's inventory
+				else:
+					send "&r&c&l<Console> &fNot Enough Tokens!" to player
+			if {lure2::%player's uuid%} == 5:
+				if {tokens::%player's uuid%} > {cost::%player's uuid%}:
+					enchant player's tool with lure 5
+					set line 2 of the lore of the player's held item to "&r&8|&7|&8| &9Lure&f 5"
+					subtract {cost::%player's uuid%} from {tokens::%player's uuid%}
+					close player's inventory
+				else:
+					send "&r&c&l<Console> &fNot Enough Tokens!" to player
+			if {lure2::%player's uuid%} > 5: 
+				send "&r&c&l<Console> &fMax Lure!" to player
+		if index of event-slot is 24:
+			if {los2::%player's uuid%} == 1:
+				if {tokens::%player's uuid%} > {cost2::%player's uuid%}:
+					if {work::%player's uuid%} is not set:
+						enchant player's tool with luck of the sea 1
+						set line 3 of the lore of the player's held item to "&r&8|&7|&8| &eLuck of the Sea&f 1 "
+						subtract {cost2::%player's uuid%} from {tokens::%player's uuid%}
+						close player's inventory
+						set {work::%player's uuid%} to 1
+				else:
+					send "&r&c&l<Console> &fNot Enough Tokens!" to player
+			if {los2::%player's uuid%} == 2:
+				if {tokens::%player's uuid%} > {cost2::%player's uuid%}:
+					enchant player's tool with luck of the sea 2
+					set line 3 of the lore of the player's held item to "&r&8|&7|&8| &eLuck of the Sea&f 2 "
+					subtract {cost2::%player's uuid%} from {tokens::%player's uuid%}
+					close player's inventory
+				else:
+					send "&r&c&l<Console> &fNot Enough Tokens!" to player
+			if {los2::%player's uuid%} == 3:
+				if {tokens::%player's uuid%} > {cost2::%player's uuid%}:
+					enchant player's tool with luck of the sea 3
+					set line 3 of the lore of the player's held item to "&r&8|&7|&8| &eLuck of the Sea&f 3 "
+					subtract {cost2::%player's uuid%} from {tokens::%player's uuid%}
+					close player's inventory
+				else:
+					send "&r&c&l<Console> &fNot Enough Tokens!" to player
+			if {los2::%player's uuid%} == 4:
+				if {tokens::%player's uuid%} > {cost2::%player's uuid%}:
+					enchant player's tool with luck of the sea 4
+					set line 3 of the lore of the player's held item to "&r&8|&7|&8| &eLuck of the Sea&f 4 "
+					subtract {cost2::%player's uuid%} from {tokens::%player's uuid%}
+					close player's inventory
+				else:
+					send "&r&c&l<Console> &fNot Enough Tokens!" to player
+			if {los2::%player's uuid%} == 5:
+				if {tokens::%player's uuid%} > {cost2::%player's uuid%}:
+					enchant player's tool with luck of the sea 5
+					set line 3 of the lore of the player's held item to "&r&8|&7|&8| &eLuck of the Sea&f 5 "
+					subtract {cost2::%player's uuid%} from {tokens::%player's uuid%}
+					close player's inventory
+				else:
+					send "&r&c&l<Console> &fNot Enough Tokens!" to player
+			if {los2::%player's uuid%} > 5: 
+				send "&r&c&l<Console> &fMax Luck of Sea!" to player
+
+on fish:
+	chance of 0.001%:
+		set {rarityfish} to "&4&lForgotten"
+		set {fishlb} to 10000
+		set {lb} to a random integer from 10 to 10000
+		set {fishtype} to Pufferfish
+		set {exp::%player's uuid%} to 100000
+	chance of 0.1%:
+		set {rarityfish} to "&d&lMythical"
+		set {fishlb} to 1000
+		set {lb} to a random integer from 1 to 1000
+		set {fishtype} to Pufferfish
+		set {exp::%player's uuid%} to 10000
+	chance of 1%:
+		set {rarityfish} to "&e&lGodly"
+		set {fishlb} to 500
+		set {lb} to a random integer from 1 to 250
+		set {fishtype} to Tropical Fish
+		set {exp::%player's uuid%} to 5000
+	chance of 5%:
+		set {rarityfish} to "&6&lLegendary"
+		set {fishlb} to 250
+		set {lb} to a random integer from 1 to 100
+		set {fishtype} to Tropical Fish
+		set {exp::%player's uuid%} to 2500
+	chance of 10%:
+		set {rarityfish} to "&5&lEpic"
+		set {fishlb} to 160
+		set {lb} to a random integer from 1 to 50
+		set {fishtype} to Cooked Cod
+		set {exp::%player's uuid%} to 1600
+	chance of 25%:
+		set {rarityfish} to "&3&lRare"
+		set {fishlb} to 125 
+		set {lb} to a random integer from 1 to 25
+		set {fishtype} to Raw Salmon
+		set {exp::%player's uuid%} to 1250
+	chance of 50%:
+		set {rarityfish} to "&f&lCommon"
+		set {fishlb} to 100
+		set {lb} to a random integer from 1 to 10
+		set {fishtype} to Raw Cod
+		set {exp::%player's uuid%} to 1000
+	chance of 9.1%:
+		set {rarityfish} to "&a&lTrash"
+		set {fishlb} to 10
+		set {lb} to a random integer from 1 to 2
+		set {fishtype} to Dried Kelp
+		set {exp::%player's uuid%} to 100
+	if fish state = caught fish:
+		add {exp::%player's uuid%} to {totalexp::%player's uuid%}
+		send "&9&lLevel: &f[&c%{totalexp::%player's uuid%}%&f/&a%{expreq::%player's uuid%}%&f]" to player
+		if {totalexp::%player's uuid%} >= {expreq::%player's uuid%}:
+			add 1 to {level::%player's uuid%}
+			set {expreq::%player's uuid%} to {level::%player's uuid%}*1000
+			set {totalexp::%player's uuid%} to 0
+			send "&l&f<&c&lConsole&l&f> &9Leveled Up!" to player
+		set {valuefish} to {fishlb}*{lb}
+		set item of caught entity to {fishtype} named "%{rarityfish}% Fish" with the lore "&f------------", "   &r&bWeight: &f%{lb}% lb(s)", "   &r&bValue: &f⛃%{valuefish}%", "&f------------"
+		
+on right click:
+	if player is holding Pufferfish or Tropical Fish or Cooked Cod or Raw Salmon or Raw Cod or Dried Kelp:
+		set {_amount::*} to line 3 of the lore of the player's held item split at "⛃"
+		set {n101} to {_amount::2} parsed as number
+		add {n101} to {tokens::%player's uuid%}
+		set player's tool to air
+		send "&b&lTokens: &f%{tokens::%player's uuid%}%" to player
+		
+		
+		
+command /tokenreset:
+	permission: op
+	trigger:
+		set {tokens::%player's uuid%} to 0
+		
+command /fishgive [<number>] [<number>]:
+	permission: operator
+	usage: /fishgive [rarity](1=Trash,2=Common,3=Rare,4=Epic,5=Legendary,6=Godly,7=Mythical,8=Forgotten) [Weight]
+	trigger:
+		if arg-1 = 1:
+			set {rarityfish} to "&a&lTrash"
+			set {fishlb} to 10
+			set {lb} to arg-2
+			set {fishtype} to Dried Kelp
+		if arg-1 = 2:
+			set {rarityfish} to "&f&lCommon"
+			set {fishlb} to 100
+			set {lb} to arg-2
+			set {fishtype} to Raw Cod
+		if arg-1 = 3:
+			set {rarityfish} to "&3&lRare"
+			set {fishlb} to 125 
+			set {lb} to arg-2
+			set {fishtype} to Raw Salmon
+		if arg-1 = 4:
+			set {rarityfish} to "&5&lEpic"
+			set {fishlb} to 160
+			set {lb} to arg-2
+			set {fishtype} to Cooked Cod
+		if arg-1 = 5:
+			set {rarityfish} to "&6&lLegendary"
+			set {fishlb} to 250
+			set {lb} to arg-2
+			set {fishtype} to Tropical Fish
+		if arg-1 = 6:
+			set {rarityfish} to "&e&lGodly"
+			set {fishlb} to 500
+			set {lb} to arg-2
+			set {fishtype} to Tropical Fish
+		if arg-1 = 7:
+			set {rarityfish} to "&d&lMythical"
+			set {fishlb} to 1000
+			set {lb} to arg-2
+			set {fishtype} to Pufferfish
+		if arg-1 = 8:
+			set {rarityfish} to "&4&lForgotten"
+			set {fishlb} to 10000
+			set {lb} to arg-2
+			set {fishtype} to Pufferfish
+		set {valuefish} to {fishlb}*{lb}
+		give player {fishtype} named "%{rarityfish}% Fish" with the lore "&f------------", "   &r&bWeight: &f%{lb}% lb(s)", "   &r&bValue: &f⛃%{valuefish}%", "&f------------"

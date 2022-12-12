@@ -1,0 +1,30 @@
+command /nbt [<text>]:
+	permission: op
+	trigger:
+		set {_nbt} to nbt compound of tool
+		set tag "tag;custom;+dmg" of {_nbt} to "10"
+
+every second:
+	loop all players:
+		if loop-player's offhand is end rod named "&fSpeed Talisman":
+			set {speed::%loop-player%} to true
+		if loop-player's offhand is player head named "&e&lFallen King's &fTalisman":
+			set {undeadking::%loop-player%} to true
+	
+every 2 second:
+	loop all players:
+		if {speed::%loop-player%} is true:
+			if loop-player's offhand is end rod named "&fSpeed Talisman":
+				set {speed::%loop-player%} to true
+				apply speed of tier 2 to loop-player for 3 seconds
+			else:
+				set {speed::%loop-player%} to false
+				remove speed from loop-player's active potion effects
+		if {undeadking::%loop-player%} is true:
+			if loop-player's offhand is player head named "&e&lFallen King's &fTalisman":
+				set {undeadking::%loop-player%} to true
+				apply luck of tier 1 to loop-player for 2 seconds
+				
+			else:
+				set {undeadking::%loop-player%} to false
+				remove speed from loop-player's active potion effects
